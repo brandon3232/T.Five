@@ -156,6 +156,7 @@ export default function App() {
           "Detente sin culpa, escucha sin propósito, descansa sin necesidad de
           justificarlo"
         </p>
+        <p className="text-xs opacity-50 mt-2">De: Eduardo Gutierrez Guzman</p>
       </footer>
     </div>
   );
