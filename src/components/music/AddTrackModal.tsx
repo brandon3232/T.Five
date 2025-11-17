@@ -88,7 +88,10 @@ export function AddTrackModal({ onClose, onAdd }: AddTrackModalProps) {
                 >
                   <div className="font-medium text-sm">{track.title}</div>
                   <div className="text-xs opacity-60">
-                    {track.artist} · {Math.round(track.length / 60)} min
+                    {track.artist}
+                    {track.length
+                      ? ` · ${Math.round(track.length / 60)} min`
+                      : ""}
                     {track.genre && ` · ${track.genre}`}
                   </div>
                 </button>

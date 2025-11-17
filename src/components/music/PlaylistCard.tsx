@@ -20,7 +20,7 @@ export function PlaylistCard({
   onDelete,
 }: PlaylistCardProps) {
   const totalDuration = playlist.tracks.reduce(
-    (acc, track) => acc + track.length,
+    (acc, track) => acc + (track.length || 0),
     0
   );
 
@@ -74,7 +74,9 @@ export function PlaylistCard({
                 </div>
                 <div className="text-xs opacity-60 truncate">
                   {track.artist || "Artista desconocido"} ·{" "}
-                  {formatDuration(track.length)}
+                  {track.length !== undefined
+                    ? formatDuration(track.length)
+                    : "---"}
                   {track.genre && ` · ${track.genre}`}
                 </div>
               </div>

@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import { PlaylistCard } from "./PlaylistCard";
 import { AddTrackModal } from "./AddTrackModal";
-import { SpotifySearch } from "./SpotifySearch";
+import { JamendoSearch } from "./JamendoSearch";
 import { uid } from "../../lib/utils";
 import type { Playlist, Track } from "../../types";
 
@@ -17,7 +17,7 @@ interface MusicProps {
 
 /**
  * Componente principal de Música
- * Incluye integración con Spotify API para buscar canciones
+ * Incluye integración con Jamendo API para buscar música libre
  */
 export function Music({ playlists, setPlaylists }: MusicProps) {
   const [newPlaylistName, setNewPlaylistName] = useState("");
@@ -25,7 +25,7 @@ export function Music({ playlists, setPlaylists }: MusicProps) {
     null
   );
   const [isAddTrackModalOpen, setIsAddTrackModalOpen] = useState(false);
-  const [showSpotifySearch, setShowSpotifySearch] = useState(false);
+  const [showJamendoSearch, setShowJamendoSearch] = useState(false);
 
   const handleCreatePlaylist = () => {
     if (!newPlaylistName.trim()) return;
@@ -82,27 +82,30 @@ export function Music({ playlists, setPlaylists }: MusicProps) {
         </div>
       </Card>
 
-      {/* Búsqueda de Spotify */}
+      {/* Búsqueda de Jamendo */}
       <Card
-        title="Buscar música en Spotify"
+        title="Buscar música en Jamendo"
         actions={
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setShowSpotifySearch(!showSpotifySearch)}
+            onClick={() => setShowJamendoSearch(!showJamendoSearch)}
           >
-            {showSpotifySearch ? "Ocultar" : "Mostrar"}
+            {showJamendoSearch ? "Ocultar" : "Mostrar"}
           </Button>
         }
       >
-        {showSpotifySearch ? (
-          <SpotifySearch playlists={playlists} onAddTrack={handleAddTrack} />
+        {showJamendoSearch ? (
+          <JamendoSearch
+            selectedPlaylistId={selectedPlaylistId}
+            onAddTrack={handleAddTrack}
+          />
         ) : (
           <p className="text-sm text-center text-zinc-600 dark:text-zinc-400 py-4">
-            Busca canciones relajantes, música para meditar y más.
+            Explora miles de canciones libres para meditación y relajación.
             <br />
             <button
-              onClick={() => setShowSpotifySearch(true)}
+              onClick={() => setShowJamendoSearch(true)}
               className="text-zinc-900 dark:text-zinc-100 underline mt-2"
             >
               Abrir buscador

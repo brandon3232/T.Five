@@ -6,8 +6,10 @@ export interface Track {
   id: string;
   title: string;
   artist: string;
-  url: string;
-  length: number; // en segundos
+  addedAt?: string; // Opcional para retrocompatibilidad
+  // Campos opcionales adicionales
+  url?: string;
+  length?: number; // en segundos
   genre?: string;
 }
 
