@@ -50,6 +50,12 @@ export function Music({ playlists, setPlaylists }: MusicProps) {
     );
   };
 
+  const handleAddTrackFromJamendo = (track: Track) => {
+    if (selectedPlaylistId) {
+      handleAddTrack(selectedPlaylistId, track);
+    }
+  };
+
   const handleRemoveTrack = (playlistId: string, trackId: string) => {
     setPlaylists((prev) =>
       prev.map((p) =>
@@ -98,7 +104,7 @@ export function Music({ playlists, setPlaylists }: MusicProps) {
         {showJamendoSearch ? (
           <JamendoSearch
             selectedPlaylistId={selectedPlaylistId}
-            onAddTrack={handleAddTrack}
+            onAddTrack={handleAddTrackFromJamendo}
           />
         ) : (
           <p className="text-sm text-center text-zinc-600 dark:text-zinc-400 py-4">
